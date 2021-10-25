@@ -18,32 +18,32 @@ jobs:
       matrix:
         entry:
           - { os: 'focal',  baseruby: '2.7', tag: 'gcc-11',  extras: 'g++-11' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'gcc-10',  extras: 'g++-10' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'gcc-9',   extras: 'g++-9' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'gcc-8',   extras: 'g++-8' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'gcc-7',   extras: 'g++-7' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'gcc-6',   extras: 'g++-6' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'gcc-5',   extras: 'g++-5' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'gcc-4.8', extras: 'g++-4.8' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'gcc-10',  extras: 'g++-10' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'gcc-9',   extras: 'g++-9' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'gcc-8',   extras: 'g++-8' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'gcc-7',   extras: 'g++-7' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'gcc-6',   extras: 'g++-6' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'gcc-5',   extras: 'g++-5' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'gcc-4.8', extras: 'g++-4.8' }
 
           # The clang-14, 13 arm64 are not available.
-          - { os: 'focal',  baseruby: '2.7', tag: 'clang-14',  extras: 'llvm-14', platforms: 'linux/amd64' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'clang-13',  extras: 'llvm-13', platforms: 'linux/amd64' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'clang-14',  extras: 'llvm-14', platforms: 'linux/amd64' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'clang-13',  extras: 'llvm-13', platforms: 'linux/amd64' }
           - { os: 'focal',  baseruby: '2.7', tag: 'clang-12',  extras: 'llvm-12' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'clang-11',  extras: 'llvm-11' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'clang-10',  extras: 'llvm-10' }
-          - { os: 'focal',  baseruby: '2.7', tag: 'clang-9',   extras: 'llvm-9' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-8',   extras: 'llvm-8' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-7',   extras: 'llvm-7' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-6.0', extras: 'llvm-6.0' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-5.0', extras: 'llvm-5.0' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-4.0', extras: 'llvm-4.0' }
-          - { os: 'bionic', baseruby: '2.5', tag: 'clang-3.9', extras: 'llvm-3.9' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'clang-11',  extras: 'llvm-11' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'clang-10',  extras: 'llvm-10' }
+          # - { os: 'focal',  baseruby: '2.7', tag: 'clang-9',   extras: 'llvm-9' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-8',   extras: 'llvm-8' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-7',   extras: 'llvm-7' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-6.0', extras: 'llvm-6.0' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-5.0', extras: 'llvm-5.0' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-4.0', extras: 'llvm-4.0' }
+          # - { os: 'bionic', baseruby: '2.5', tag: 'clang-3.9', extras: 'llvm-3.9' }
 
-          - { os: 'focal',   baseruby: '2.7', tag: 'mingw-w64' }
-          - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-arm64' }
-          - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-ppc64el' }
-          - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-s390x' }
+          # - { os: 'focal',   baseruby: '2.7', tag: 'mingw-w64' }
+          # - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-arm64' }
+          # - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-ppc64el' }
+          # - { os: 'focal',   baseruby: '2.7', tag: 'crossbuild-essential-s390x' }
 
     name: Publish ${{ matrix.entry.tag }}
     runs-on: ubuntu-latest
@@ -56,11 +56,11 @@ jobs:
             ${{ runner.os }}-buildx-
       - uses: docker/setup-qemu-action@v1
       - uses: docker/setup-buildx-action@v1
-      - uses: docker/login-action@v1
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.ACCESS_TOKEN }}
-          registry: ghcr.io
+      # - uses: docker/login-action@v1
+      #   with:
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.ACCESS_TOKEN }}
+      #     registry: ghcr.io
       - uses: docker/build-push-action@v2
         with:
           build-args: |
@@ -70,7 +70,8 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           platforms: ${{ matrix.entry.platforms || 'linux/amd64,linux/arm64' }}
-          push: ${{ github.event_name != 'pull_request' }}
+          # push: ${{ github.event_name != 'pull_request' }}
+          push: false
           tags: |
             ghcr.io/${{ github.repository }}:${{ matrix.entry.tag }}
 
