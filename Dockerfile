@@ -46,3 +46,4 @@ RUN set -ex                                           \
 RUN adduser --disabled-password --gecos '' ci && adduser ci sudo
 
 USER ci
+WORKDIR /home/ci
