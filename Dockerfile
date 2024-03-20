@@ -72,6 +72,17 @@ RUN set -ex                                           \
  && bash -c "if [[ -n '$build_ruby' ]]; then /tmp/build_ruby.sh '$build_ruby'; fi" \
  && rm /tmp/build_ruby.sh
 
-RUN adduser --disabled-password --gecos '' ci && adduser ci sudo
+# OSUOSL's Jenkins CI requires the running user with the UID/GID 10000.
+# https://github.com/osuosl/wiki/blob/713f6cbe12c992d74b60590823bc7fce89e0f578/source/jenkins/jenkins-docker.rst?plain=1#L44
+RUN addgroup --gid 10000 ci
+RUN adduser \
+  --disabled-password \
+  --gecos '' \
+  --uid 10000 \
+  --gid 10000 \
+  ci \
+  && adduser ci sudo
+# Print the user info.
+RUN id ci
 
 USER ci
