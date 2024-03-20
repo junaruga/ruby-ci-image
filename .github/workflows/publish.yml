@@ -23,7 +23,12 @@ jobs:
         entry:
           - { os: 'lunar', system_ruby: '3.1', tag: 'gcc-13', extras: 'g++-13' }
           - { os: 'jammy', system_ruby: '3.0', tag: 'gcc-12', extras: 'g++-12' }
-          - { os: 'jammy', system_ruby: '3.0', tag: 'gcc-11', extras: 'g++-11' }
+          # Use the ppc64le and s390x jammy gcc-11 container images in the
+          # OSUOSL Jenkins ppc64le/s390x CI services because we want to use the
+          # same Ubuntu and GCC versions with our Ubuntu ppc64le/s390x SSH
+          # accessing servers.
+          # https://bugs.ruby-lang.org/issues/20320
+          - { os: 'jammy', system_ruby: '3.0', tag: 'gcc-11', extras: 'g++-11', platforms: 'linux/amd64,linux/ppc64le,linux/s390x' }
           - { os: 'jammy', system_ruby: '3.0', tag: 'gcc-10', extras: 'g++-10' }
           - { os: 'jammy', system_ruby: '3.0', tag: 'gcc-9',  extras: 'g++-9' }
           - { os: 'focal',  build_ruby: '3.0', tag: 'gcc-8',  extras: 'g++-8' }
@@ -80,7 +85,7 @@ jobs:
             packages=${{ matrix.entry.tag }} ${{ matrix.entry.extras }}
           cache-from: type=gha,mode=max
           cache-to: type=gha,mode=max,ignore-error=true
-          platforms: linux/amd64
+          platforms: ${{ matrix.entry.platforms || 'linux/amd64' }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/${{ github.repository }}:${{ matrix.entry.tag }}
